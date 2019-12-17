@@ -35,8 +35,7 @@ class CronController extends Controller
             //$risultato = paypal::effettuaPagamento("?cliente=$cliente->id&prop=$proprietario->id&importo=$v->importo")->run(); //Qui faccio il pagamento
 
             if($risultato == true){ //Supponendo che la richiesta api dia true nel caso sia andata a buon fine
-                Pagamenti::where('scadenza','<',$now->format('Y-m-d H:i:s'))
-                    ->where('stato',$v->id) //Stato = 1 ancora non pagato*/
+                Pagamenti::where('id',$v->id) //Stato = 1 ancora non pagato*/
                     ->update(['stato' => 2]); //Stato = 2 pagato
             }else{
                 //Ci sarà un invio di email che comunicherà il motivo per cui non è andato a buon fine l'operazione
